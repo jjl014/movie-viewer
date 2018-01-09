@@ -6,6 +6,12 @@ import RootReducer from './reducers/root_reducer';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
+// CSS
+import './App.css';
+
+// Components
+import Header from './components/header';
+
 const store = createStore(
   RootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
@@ -15,7 +21,10 @@ const store = createStore(
 const App = () => {
   return (
     <Provider store={store}>
-      <div>Hello</div>
+      <div>
+        <Header />
+        <div>Hello</div>
+      </div>
     </Provider>
   );
 };

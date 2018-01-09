@@ -1,4 +1,4 @@
-import { multiSearch } from '../util/movie_api_util';
+import { searchMovies } from '../util/movie_api_util';
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 
 export const receiveMovies = (movies) => ({
@@ -6,7 +6,7 @@ export const receiveMovies = (movies) => ({
   movies
 });
 
-export const searchMovies = (query) => dispatch =>(
-  multiSearch
+export const filterMovies = (query) => dispatch =>(
+  searchMovies
     .then(movies => dispatch(receiveMovies(movies)))
 );
