@@ -11,7 +11,9 @@ import './App.css';
 
 // Components
 import Header from './components/header';
+import MovieIndex from './components/movie_index';
 
+// Store
 const store = createStore(
   RootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
@@ -23,6 +25,9 @@ const App = () => {
     <Provider store={store}>
       <div>
         <Header />
+        <MovieIndex type="Now Playing"/>
+        <MovieIndex type="Popular"/>
+        <MovieIndex type="Upcoming"/>
         <div>Hello</div>
       </div>
     </Provider>

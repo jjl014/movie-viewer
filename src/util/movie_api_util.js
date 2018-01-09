@@ -7,6 +7,23 @@ export const searchMovies = (query) => (
   axios.get(`${url}search/movie?api_key=${apiKey}&query=${query}`)
 );
 
+export const getMovies = (type, page) => {
+  switch(type) {
+    case "Now Playing":
+      return axios.get(`${url}movie/now_playing?api_key=${apiKey}&page=${page}`);
+    case "Popular":
+      return axios.get(`${url}movie/popular?api_key=${apiKey}&page=${page}`);
+    case "Upcoming":
+      return axios.get(`${url}movie/popular?api_key=${apiKey}&page=${page}`);
+    default:
+      return false;
+  }
+};
+
+export const getMovieGenres = () => (
+  axios.get(`${url}genre/movie/list`)
+);
+
 export const getLatestMovie = () => (
   axios.get(`${url}movie/latest?api_key=${apiKey}`)
 );
