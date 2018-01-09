@@ -12,6 +12,7 @@ import './App.css';
 // Components
 import Header from './components/header';
 import MovieIndex from './components/movie_index';
+import SideBar from './components/sidebar';
 
 // Store
 const store = createStore(
@@ -23,13 +24,17 @@ const store = createStore(
 const App = () => {
   return (
     <Provider store={store}>
-      <div>
-        <Header />
-        <MovieIndex type="Now Playing"/>
-        <MovieIndex type="Popular"/>
-        <MovieIndex type="Upcoming"/>
-        <div>Hello</div>
-      </div>
+      <BrowserRouter>
+        <div className="main-container">
+          <Header />
+          <SideBar />
+          <Switch>
+            <Route exact path="/popular" component={MovieIndex}/>
+            <Route exact path="/upcoming" component={MovieIndex}/>
+            <Route exact path="/now_playing" component={MovieIndex}/>
+          </Switch>
+        </div>
+      </BrowserRouter>
     </Provider>
   );
 };

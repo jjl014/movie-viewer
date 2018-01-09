@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchMovies } from '../actions/movie_actions';
+import { withRouter } from 'react-router-dom';
+import {
+  fetchMovies,
+  fetchMovieGenres
+} from '../actions/movie_actions';
 
 class MovieIndex extends React.Component {
   constructor(props) {
@@ -11,24 +15,35 @@ class MovieIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchMovies(this.props.type, this.state.page);
+    const { pathname } = this.props.location;
+    const section = pathname.slice(1).toLowerCase();
+    this.props.fetchMovies(section, this.state.page);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const { pathname } = nextProps.location;
+    const section = pathname.slice(1).toLowerCase();
+    this.props.fetchMovies(section, this.state.page);
   }
 
   render () {
     return (
       <div className="movie-index">
-        {this.props.type}
+        {this.props.section}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+  return {
 
-});
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  fetchMovies: (type, page) => dispatch(fetchMovies(type, page))
+  fetchMovies: (section, page) => dispatch(fetchMovies(section, page)),
+  fetchMovieGenres: () => dispatch(fetchMovieGenres())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MovieIndex));

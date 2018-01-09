@@ -4,19 +4,19 @@ import {
 } from '../actions/movie_actions';
 
 const _defaultState = {
-  popular: {},
-  upcoming: {},
-  now: {},
-  all: {}
+  "popular": null,
+  "upcoming": null,
+  "now_playing": null,
 };
 
 const MoviesReducer = (state = _defaultState, action) => {
   Object.freeze(state);
+  console.log(action.section);
   switch(action.type) {
     case RECEIVE_MOVIES:
-      return Object.assign({}, state, {["all"]: action.movies});
+      return Object.assign({}, state, {[action.section]: action.movies});
     case RECEIVE_GENRES:
-      return Object.assign({}, state, {["genres"]: action.genres});
+      return Object.assign({}, state, {["Genres"]: action.genres});
     default:
       return state;
   }
