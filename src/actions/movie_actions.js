@@ -1,5 +1,5 @@
-export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 import { multiSearch } from '../util/movie_api_util';
+export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 
 export const receiveMovies = (movies) => ({
   type: RECEIVE_MOVIES,

@@ -15,9 +15,7 @@ const store = createStore(
 const App = () => {
   return (
     <Provider store={store}>
-      <div>
-        Hello
-      </div>
+      <div>Hello</div>
     </Provider>
   );
 };
