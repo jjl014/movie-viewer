@@ -1,10 +1,7 @@
 import React from 'react';
 
 const MovieIndexItem = ({movie}) => {
-  const {
-    vote_count, id, vote_average, title, overview, release_date,
-    poster_path, backdrop_path, genre_ids
-  } = movie;
+  const { poster_path, title } = movie;
   return (
     <div className="movie-index-item clearfix">
       <div className="movie-img-wrapper">

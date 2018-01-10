@@ -13,6 +13,7 @@ import './App.css';
 import NowPlayingMovies from './components/now_playing_movies';
 import PopularMovies from './components/popular_movies';
 import UpcomingMovies from './components/upcoming_movies';
+import TopRatedMovies from './components/top_rated_movies';
 import NavBar from './components/navbar';
 
 
@@ -26,13 +27,15 @@ const store = createStore(
 const App = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter onUpdate={() => window.scrollTo(0,0)}>
         <div className="main-container">
           <NavBar />
           <Switch>
             <Route exact path="/popular" component={PopularMovies}/>
             <Route exact path="/upcoming" component={UpcomingMovies}/>
             <Route exact path="/now_playing" component={NowPlayingMovies}/>
+            <Route exact path="/top_rated" component={TopRatedMovies}/>
+
           </Switch>
         </div>
       </BrowserRouter>

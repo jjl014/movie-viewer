@@ -30,9 +30,17 @@
   }
 }
 
+.movie-img:hover {
+  box-shadow: 0 0 0 2px #cc7b19;
+}
+
+.movie-index-item:hover {
+  cursor: pointer;
+}
+
 .movie-img {
   width: 100%;
-  height: 100%;
+  height: 95%;
   object-fit: contain;
 }
 

@@ -21,23 +21,22 @@ class NavBar extends React.Component {
         </li>);
     }
   }
-
   render () {
     return (
       <div className="navbar">
-        NAVBAR
-        <div className="search-container">
-          <SearchBar />
-          <Link to="/popular">Popular</Link>
-          <Link to="/now_playing">Now Playing</Link>
-          <Link to="/upcoming">Upcoming</Link>
-        </div>
-        <div className="dropdown">
-          <button className="dropbtn">Genre</button>
-          <div className="dropdown-content">
-            {this.getGenreList()}
+        <div className="btn-container">
+          <Link className="btn-primary" to="/popular">Popular</Link>
+          <Link className="btn-primary" to="/top_rated">Top Rated</Link>
+          <Link className="btn-primary" to="/upcoming">Upcoming</Link>
+          <Link className="btn-primary" to="/now_playing">Now Playing</Link>
+          <div className="dropdown">
+            <button className="dropbtn">Genre</button>
+            <div className="dropdown-content">
+              {this.getGenreList()}
+            </div>
           </div>
         </div>
+        <SearchBar />
       </div>
     );
   }

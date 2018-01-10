@@ -16,6 +16,10 @@ const _defaultState = {
     "total_pages": null,
     "list": null
   },
+  "top_rated": {
+    "total_pages": null,
+    "list": null
+  },
   "genres": null
 };
 

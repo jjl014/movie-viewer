@@ -1,10 +1,10 @@
 import React from 'react';
 import MovieIndex from './movie_index';
 
-const PopularMovies = () => {
+const UpcomingMovies = () => {
   return (
     <MovieIndex section="upcoming"/>
   );
 };
 
-export default PopularMovies;
+export default UpcomingMovies;

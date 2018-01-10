@@ -14,7 +14,9 @@ export const getMovies = (section, page) => {
     case "popular":
       return axios.get(`${url}movie/popular?api_key=${apiKey}&page=${page}`);
     case "upcoming":
-      return axios.get(`${url}movie/popular?api_key=${apiKey}&page=${page}`);
+      return axios.get(`${url}movie/upcoming?api_key=${apiKey}&page=${page}`);
+    case "top_rated":
+      return axios.get(`${url}movie/top_rated?api_key=${apiKey}&page=${page}`);
     default:
       return false;
   }

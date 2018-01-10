@@ -11,7 +11,6 @@ import MovieIndexItem from './movie_index_item';
 class MovieIndex extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       page: 1
     };
@@ -20,10 +19,7 @@ class MovieIndex extends React.Component {
   componentDidMount() {
     const { section } = this.props;
     if(section) {
-      this.props.fetchMovies(section, this.state.page)
-        .then(data => {
-          console.log(data);
-        });
+      this.props.fetchMovies(section, this.state.page);
     }
   }
 
@@ -54,20 +50,32 @@ class MovieIndex extends React.Component {
           this.setState({page: (this.state.page - 1)});
         }
       }
+      window.scrollTo(0,0);
     };
+  }
+
+  renderListNav() {
+    return (
+      <div className="list-nav-container">
+        <button onClick={this.handleButton("prev")}>
+          <i className="fa fa-2x fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <p>Page {this.state.page} of {this.props.totalPages}</p>
+        <button onClick={this.handleButton("next")}>
+          <i className="fa fa-2x fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    );
   }
 
   render () {
     return (
       <div className="movie-index-container">
-        <div className="list-nav-container">
-          <button onClick={this.handleButton("prev")}>Prev</button>
-          <h1>Page {this.state.page} / {this.props.totalPages}</h1>
-          <button onClick={this.handleButton("next")}>Next</button>
-        </div>
+        {this.renderListNav()}
         <div className="movie-index">
           {this.generateMovieList()}
         </div>
+        {this.renderListNav()}
       </div>
     );
   }

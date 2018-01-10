@@ -1,6 +1,10 @@
 import { UPDATE_FILTER } from '../actions/filter_actions';
 
-const FilterReducer = (state = {}, action) => {
+const _defaultState = {
+  query: null
+};
+
+const FilterReducer = (state = _defaultState, action) => {
   Object.freeze(state);
   switch(action.type) {
     case UPDATE_FILTER:

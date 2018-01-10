@@ -1,3 +1,5 @@
+@import './stylesheets/reset';
+@import './stylesheets/colors';
 @import './stylesheets/header';
 @import './stylesheets/movie_index';
 @import './stylesheets/movie_index_item';
@@ -5,9 +7,9 @@
 @import './stylesheets/navbar';
 
 body {
-  background-color: rgba(0,0,0,0.25);
-  margin: 0;
-  padding: 0;
+  background-color: rgba(0,0,0,0.9);
+  padding-bottom: 30px;
+  font-family: Lato, sans-serif;
 }
 
 // .main-container {
