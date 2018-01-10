@@ -1,6 +1,7 @@
 export const UPDATE_FILTER = "RECEIVE_FILTER";
 
-export const receiveFilter = (filter) => ({
+export const updateFilter = (filter, value) => ({
   type: UPDATE_FILTER,
-  filter
+  filter,
+  value
 });

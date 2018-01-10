@@ -23,12 +23,12 @@ export const filterMovies = (query) => dispatch => (
     .then(res => dispatch(receiveMovies(res.data.results)))
 );
 
-export const fetchMovies = (section) => dispatch => (
-  getMovies(section)
+export const fetchMovies = (section, page) => dispatch => (
+  getMovies(section, page)
     .then(res => dispatch(receiveMovies(res.data.results, section)))
 );
 
 export const fetchMovieGenres = () => dispatch => (
   getMovieGenres()
-    .then(res => dispatch(receiveGenres(res.data.results)))
+    .then(res => dispatch(receiveGenres(res.data.genres)))
 );

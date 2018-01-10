@@ -5,45 +5,94 @@ import {
   fetchMovies,
   fetchMovieGenres
 } from '../actions/movie_actions';
+import { updateFilter } from '../actions/filter_actions';
+import MovieIndexItem from './movie_index_item';
 
 class MovieIndex extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       page: 1
     };
   }
 
   componentDidMount() {
-    const { pathname } = this.props.location;
-    const section = pathname.slice(1).toLowerCase();
-    this.props.fetchMovies(section, this.state.page);
+    const { section } = this.props;
+    if(section) {
+      this.props.fetchMovies(section, this.state.page)
+        .then(data => {
+          console.log(data);
+        });
+    }
   }
 
+  // componentWillReceiveProps(newProps) {
+  //   console.log(newProps);
+  //   if(newProps.location.pathname !== this.props.location.pathname) {
+  //     console.log("updated");
+  //     this.props.fetchMovies(this.props.section, this.state.page);
+  //   }
+  // }
+
   componentWillUpdate(nextProps, nextState) {
-    const { pathname } = nextProps.location;
-    const section = pathname.slice(1).toLowerCase();
-    this.props.fetchMovies(section, this.state.page);
+    if(nextState.page !== this.state.page) {
+      this.props.fetchMovies(this.props.section, nextState.page);
+    }
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(prevState.page !== this.state.page) {
+  //     this.props.fetchMovies(this.props.section, this.state.page);
+  //   }
+  // }
+
+  generateMovieList() {
+    const { movies, section } = this.props;
+    if(movies) {
+      return movies.map((movie, i) =>
+        <MovieIndexItem key={`movie-${section}-${i}`} movie={movie} />
+      );
+    }
+  }
+
+  handleButton(type) {
+    return (e) => {
+      e.preventDefault();
+      if(type === "next") {
+        this.setState({page: (this.state.page + 1)});
+      } else {
+        if(this.state.page > 1) {
+          this.setState({page: (this.state.page - 1)});
+        }
+      }
+    };
   }
 
   render () {
+    console.log(this.state);
     return (
-      <div className="movie-index">
-        {this.props.section}
+      <div className="movie-index-container">
+        <button onClick={this.handleButton("next")}>Next</button>
+        <button onClick={this.handleButton("prev")}>Prev</button>
+        <div className="movie-index">
+          {this.generateMovieList()}
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-
+    movies: state.movies[ownProps.section]
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchMovies: (section, page) => dispatch(fetchMovies(section, page)),
-  fetchMovieGenres: () => dispatch(fetchMovieGenres())
+  fetchMovieGenres: () => dispatch(fetchMovieGenres()),
+  updateFilter: (filter, value) => dispatch(updateFilter(filter, value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MovieIndex));

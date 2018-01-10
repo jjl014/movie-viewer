@@ -2,8 +2,20 @@
 @import './stylesheets/movie_index';
 @import './stylesheets/movie_index_item';
 @import './stylesheets/searchbar';
-@import './stylesheets/sidebar';
+@import './stylesheets/navbar';
 
 body {
   background-color: rgba(0,0,0,0.25);
+  margin: 0;
+  padding: 0;
+}
+
+// .main-container {
+//   background-image: linear-gradient(rgba(0,0,0,.85) 15%,rgba(0,0,0,.2) 40%,#000 90%);
+//   background-attachment: fixed;
+//   margin: 0;
+// }
+
+li {
+  list-style: none
 }

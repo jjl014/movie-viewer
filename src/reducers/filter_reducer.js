@@ -1,8 +1,10 @@
-import { UPDATE_FILTER } from '../actions/movie_actions';
+import { UPDATE_FILTER } from '../actions/filter_actions';
 
 const FilterReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
+    case UPDATE_FILTER:
+      return Object.assign({}, state, {[action.filter]: action.value});
     default:
       return state;
   }
