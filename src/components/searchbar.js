@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { queryMovies } from '../actions/movie_actions';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -15,20 +17,26 @@ class SearchBar extends React.Component {
     };
   }
 
-  keyPress(e) {
-    if(e.keyCode === 13) {
-    }
+  keyPress() {
+    return (e) => {
+      if(e.keyCode === 13) {
+        this.props.queryMovies(this.state.query)
+          .then(() => {
+            this.props.history.push(`/search/${this.state.query}`);
+            this.setState({query: ""});
+          });
+      }
+    };
   }
 
   render () {
-    console.log(this.state);
     return (
       <div className="search-bar">
         <input
           type="text"
           value={this.state.query}
           onChange={this.handleChange()}
-          onKeyDown={this.keyPress}
+          onKeyDown={this.keyPress()}
           placeholder="Search Movie Title...">
         </input>
       </div>
@@ -41,7 +49,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  queryMovies: (query) => dispatch(queryMovies(query))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SearchBar));

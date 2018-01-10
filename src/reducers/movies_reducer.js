@@ -20,6 +20,10 @@ const _defaultState = {
     "total_pages": null,
     "list": null
   },
+  "search_results": {
+    "total_pages": null,
+    "list": null
+  },
   "genres": null
 };
 
@@ -30,7 +34,7 @@ const MoviesReducer = (state = _defaultState, action) => {
       return Object.assign({}, state, {
         [action.section]: {
           "list": action.movies,
-          "total_pages": state[action.section]["total_pages"] || action.total_pages
+          "total_pages": action.total_pages
         }
       });
     case RECEIVE_GENRES:

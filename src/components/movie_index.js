@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
   fetchMovies,
-  fetchMovieGenres
+  fetchMovieGenres,
+  queryMovies
 } from '../actions/movie_actions';
 import { updateFilter } from '../actions/filter_actions';
 import MovieIndexItem from './movie_index_item';
@@ -18,23 +19,37 @@ class MovieIndex extends React.Component {
 
   componentDidMount() {
     const { section } = this.props;
-    if(section) {
+    const { query } = this.props.match.params;
+    if(section && section !== "search_results") {
       this.props.fetchMovies(section, this.state.page);
+    } else if(query) {
+      this.props.queryMovies(query, this.state.page);
     }
   }
 
   componentWillUpdate(nextProps, nextState) {
+    const { section } = this.props;
+    const { query } = this.props.match.params;
     if(nextState.page !== this.state.page) {
-      this.props.fetchMovies(this.props.section, nextState.page);
+      if(this.props.section === "search_results") {
+        this.props.queryMovies(query, nextState.page);
+      } else {
+        this.props.fetchMovies(section, nextState.page);
+      }
     }
+  }
+
+  componentWillReceiveProps(newProps) {
   }
 
   generateMovieList() {
     const { movies, section } = this.props;
     if(movies) {
-      return movies.map((movie, i) =>
-        <MovieIndexItem key={`movie-${section}-${i}`} movie={movie} />
-      );
+      return movies.map((movie, i) => {
+        if(movie.poster_path) {
+          return <MovieIndexItem key={`movie-${section}-${i}`} movie={movie} />;
+        }
+      });
     }
   }
 
@@ -84,14 +99,16 @@ class MovieIndex extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     movies: state.movies[ownProps.section].list,
-    totalPages: state.movies[ownProps.section].total_pages
+    totalPages: state.movies[ownProps.section].total_pages,
+    query: state.filters.query
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchMovies: (section, page) => dispatch(fetchMovies(section, page)),
   fetchMovieGenres: () => dispatch(fetchMovieGenres()),
-  updateFilter: (filter, value) => dispatch(updateFilter(filter, value))
+  updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
+  queryMovies: (query, page) => dispatch(queryMovies(query, page))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MovieIndex));
