@@ -10,7 +10,6 @@ import logger from 'redux-logger';
 import './App.css';
 
 // Components
-import Header from './components/header';
 import NowPlayingMovies from './components/now_playing_movies';
 import PopularMovies from './components/popular_movies';
 import UpcomingMovies from './components/upcoming_movies';
@@ -29,7 +28,6 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <div className="main-container">
-          <Header />
           <NavBar />
           <Switch>
             <Route exact path="/popular" component={PopularMovies}/>

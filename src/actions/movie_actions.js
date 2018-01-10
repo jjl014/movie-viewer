@@ -7,10 +7,11 @@ import {
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 export const RECEIVE_GENRES = "RECEIVE_GENRES";
 
-export const receiveMovies = (movies, section) => ({
+export const receiveMovies = (movies, section, total_pages) => ({
   type: RECEIVE_MOVIES,
   movies,
-  section
+  section,
+  total_pages
 });
 
 export const receiveGenres = (genres) => ({
@@ -25,7 +26,7 @@ export const filterMovies = (query) => dispatch => (
 
 export const fetchMovies = (section, page) => dispatch => (
   getMovies(section, page)
-    .then(res => dispatch(receiveMovies(res.data.results, section)))
+    .then(res => dispatch(receiveMovies(res.data.results, section, res.data.total_pages)))
 );
 
 export const fetchMovieGenres = () => dispatch => (

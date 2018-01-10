@@ -27,25 +27,11 @@ class MovieIndex extends React.Component {
     }
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   console.log(newProps);
-  //   if(newProps.location.pathname !== this.props.location.pathname) {
-  //     console.log("updated");
-  //     this.props.fetchMovies(this.props.section, this.state.page);
-  //   }
-  // }
-
   componentWillUpdate(nextProps, nextState) {
     if(nextState.page !== this.state.page) {
       this.props.fetchMovies(this.props.section, nextState.page);
     }
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if(prevState.page !== this.state.page) {
-  //     this.props.fetchMovies(this.props.section, this.state.page);
-  //   }
-  // }
 
   generateMovieList() {
     const { movies, section } = this.props;
@@ -60,7 +46,9 @@ class MovieIndex extends React.Component {
     return (e) => {
       e.preventDefault();
       if(type === "next") {
-        this.setState({page: (this.state.page + 1)});
+        if(this.state.page < this.props.totalPages) {
+          this.setState({page: (this.state.page + 1)});
+        }
       } else {
         if(this.state.page > 1) {
           this.setState({page: (this.state.page - 1)});
@@ -70,11 +58,13 @@ class MovieIndex extends React.Component {
   }
 
   render () {
-    console.log(this.state);
     return (
       <div className="movie-index-container">
-        <button onClick={this.handleButton("next")}>Next</button>
-        <button onClick={this.handleButton("prev")}>Prev</button>
+        <div className="list-nav-container">
+          <button onClick={this.handleButton("prev")}>Prev</button>
+          <h1>Page {this.state.page} / {this.props.totalPages}</h1>
+          <button onClick={this.handleButton("next")}>Next</button>
+        </div>
         <div className="movie-index">
           {this.generateMovieList()}
         </div>
@@ -85,7 +75,8 @@ class MovieIndex extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    movies: state.movies[ownProps.section]
+    movies: state.movies[ownProps.section].list,
+    totalPages: state.movies[ownProps.section].total_pages
   };
 };
 
