@@ -13,23 +13,20 @@ class MovieIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1
+      page: 1,
     };
   }
 
   componentDidMount() {
     const { section } = this.props;
-    const { query } = this.props.match.params;
     if(section && section !== "search_results") {
       this.props.fetchMovies(section, this.state.page);
-    } else if(query) {
-      this.props.queryMovies(query, this.state.page);
     }
   }
 
   componentWillUpdate(nextProps, nextState) {
     const { section } = this.props;
-    const { query } = this.props.match.params;
+    const { query } = nextProps;
     if(nextState.page !== this.state.page) {
       if(this.props.section === "search_results") {
         this.props.queryMovies(query, nextState.page);
@@ -40,6 +37,9 @@ class MovieIndex extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    if(this.props.query !== newProps.query) {
+      this.setState({page: 1});
+    }
   }
 
   generateMovieList() {
@@ -49,6 +49,7 @@ class MovieIndex extends React.Component {
         if(movie.poster_path) {
           return <MovieIndexItem key={`movie-${section}-${i}`} movie={movie} />;
         }
+        return null;
       });
     }
   }
@@ -58,7 +59,9 @@ class MovieIndex extends React.Component {
       e.preventDefault();
       if(type === "next") {
         if(this.state.page < this.props.totalPages) {
-          this.setState({page: (this.state.page + 1)});
+          this.setState((prevState, props) => {
+            return {page: prevState.page + 1};
+          });
         }
       } else {
         if(this.state.page > 1) {

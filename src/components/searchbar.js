@@ -22,7 +22,7 @@ class SearchBar extends React.Component {
       if(e.keyCode === 13) {
         this.props.queryMovies(this.state.query)
           .then(() => {
-            this.props.history.push(`/search/${this.state.query}`);
+            this.props.history.push("/search");
             this.setState({query: ""});
           });
       }

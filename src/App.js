@@ -37,7 +37,7 @@ const App = () => {
             <Route exact path="/upcoming" component={UpcomingMovies}/>
             <Route exact path="/now_playing" component={NowPlayingMovies}/>
             <Route exact path="/top_rated" component={TopRatedMovies}/>
-            <Route exact path="/search/:query" component={SearchResults}/>
+            <Route path="/search" component={SearchResults}/>
             <Route path="/movie/:id" component={MovieDetails} />
             <Route path="/star/:id" component={StarDetails} />
           </Switch>
