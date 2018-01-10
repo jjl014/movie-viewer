@@ -10,17 +10,20 @@ class NavBar extends React.Component {
     this.props.fetchMovieGenres();
   }
 
-  getGenreList() {
-    const { genres } = this.props;
-    if(genres) {
-      return genres.map((genre,i ) =>
-        <li
-          className="genre-list-item"
-          key={`genre-${i}`}>
-            {genre.name}
-        </li>);
-    }
-  }
+  // Genre Search for the movie API is broken.
+  // Commented out dropdown genre list in case it works in the future.
+  // getGenreList() {
+  //   const { genres } = this.props;
+  //   if(genres) {
+  //     return genres.map((genre,i ) =>
+  //       <li
+  //         className="genre-list-item"
+  //         key={`genre-${i}`}>
+  //           {genre.name}
+  //       </li>);
+  //   }
+  // }
+
   render () {
     return (
       <div className="navbar">
@@ -29,12 +32,6 @@ class NavBar extends React.Component {
           <Link className="btn-primary" to="/top_rated">Top Rated</Link>
           <Link className="btn-primary" to="/upcoming">Upcoming</Link>
           <Link className="btn-primary" to="/now_playing">Now Playing</Link>
-          <div className="dropdown">
-            <button className="dropbtn">Genre</button>
-            <div className="dropdown-content">
-              {this.getGenreList()}
-            </div>
-          </div>
         </div>
         <SearchBar />
       </div>
@@ -51,3 +48,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+
+
+// Genre Search for the movie API is broken.
+// Commented out dropdown genre list in case it works in the future.
+// <div className="dropdown">
+// <button className="dropbtn">Genre</button>
+// <div className="dropdown-content">
+// {this.getGenreList()}
+// </div>
+// </div>
