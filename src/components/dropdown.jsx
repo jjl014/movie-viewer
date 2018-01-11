@@ -5,28 +5,45 @@ class DropDown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuActive: false
+      show: false
     };
   }
 
   toggleMenu() {
     return () => {
-      this.setState({menuActive: !this.state.menuActive});
+      this.setState({show: !this.state.show});
+    };
+  }
+
+  hide() {
+    return (e) => {
+      if (e && e.relatedTarget) {
+        e.relatedTarget.click();
+      }
+      this.setState({show: false});
     };
   }
 
   render() {
-    console.log(this.state);
     return (
-      <div className="btn-menu">
-        <i onFocusCapture={this.toggleMenu()} onBlurCapture={this.toggleMenu()} className="fa fa-bars" aria-hidden="true"></i>
-        { this.state.menuActive &&
-          <div>
-            <li onClick={this.toggleMenu()}><Link to="/popular">Popular</Link></li>
-            <li onClick={this.toggleMenu()}><Link to="/top_rated">Top Rated</Link></li>
-            <li onClick={this.toggleMenu()}><Link to="/upcoming">Upcoming</Link></li>
-            <li onClick={this.toggleMenu()}><Link to="/now_playing">Now Playing</Link></li>
-          </div>
+      <div
+        className="btn-menu"
+        onClick={this.toggleMenu()}
+        onBlur={this.hide()}
+      >
+        <button className="menu-btn" type="button">
+          <i className="fa fa-3x fa-bars" aria-hidden="true"></i>
+        </button>
+        {
+          this.state.show &&
+          (
+            <div className="menu-list" onBlur={this.toggleMenu()}>
+              <Link to="/popular">Popular</Link>
+              <Link to="/top_rated">Top Rated</Link>
+              <Link to="/upcoming">Upcoming</Link>
+              <Link to="/now_playing">Now Playing</Link>
+            </div>
+          )
         }
       </div>
     );

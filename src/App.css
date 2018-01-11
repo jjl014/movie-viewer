@@ -183,7 +183,7 @@ body, a, div, p, h1, h2, h3, h4, input, li, ul {
   height: 6vh;
   margin-right: 50px; }
   .search-bar input {
-    width: 300px;
+    width: 35vw;
     padding: 10px 8px;
     font-size: 16px;
     outline: none;
@@ -225,17 +225,52 @@ body, a, div, p, h1, h2, h3, h4, input, li, ul {
   .navbar {
     height: 7vh;
     display: flex;
-    justify-content: center; }
+    justify-content: space-between; }
     .navbar .search-bar {
       margin: 0;
-      padding: 0; }
+      padding: 0;
+      padding-right: 50px; }
+      .navbar .search-bar input {
+        width: 55vw; }
     .navbar .btn-container {
       display: none; }
     .navbar .btn-menu {
       display: flex;
       width: auto;
       height: auto;
-      margin-right: 10px; } }
+      margin-right: 10px;
+      outline: none; }
+      .navbar .btn-menu button {
+        height: 7vh;
+        width: 60px;
+        border: none;
+        background-color: transparent;
+        color: white;
+        outline: none; }
+        .navbar .btn-menu button:focus {
+          background-color: #a96615; }
+      .navbar .btn-menu .menu-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 7vh;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.95);
+        width: 100vw; }
+        .navbar .btn-menu .menu-list a {
+          width: 100%;
+          font-size: 1.5em;
+          text-decoration: none;
+          color: #cc7b19;
+          box-sizing: border-box;
+          padding: 10px 10px;
+          text-align: center;
+          border-bottom: solid 1px rgba(0, 0, 0, 0.1); }
+          .navbar .btn-menu .menu-list a:hover {
+            background-color: #a96615;
+            color: white; } }
 
 body {
   background-color: rgba(0, 0, 0, 0.9);

@@ -42,11 +42,16 @@
   .navbar {
     height: 7vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 
     .search-bar {
       margin: 0;
       padding: 0;
+      padding-right: 50px;
+
+      input {
+        width: 55vw;
+      }
     }
 
     .btn-container {
@@ -58,6 +63,48 @@
       width: auto;
       height: auto;
       margin-right: 10px;
+      outline: none;
+
+      button {
+        height: 7vh;
+        width: 60px;
+        border: none;
+        background-color: transparent;
+        color: white;
+        outline: none;
+
+        &:focus {
+          background-color: $hover-orange;
+        }
+      }
+
+      .menu-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 7vh;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.95);
+        width: 100vw;
+
+        a {
+          width: 100%;
+          font-size: 1.5em;
+          text-decoration: none;
+          color: $primary-orange;
+          box-sizing: border-box;
+          padding: 10px 10px;
+          text-align: center;
+          border-bottom: solid 1px rgba(0,0,0,0.1);
+
+          &:hover {
+            background-color: $hover-orange;
+            color: white;
+          }
+        }
+      }
     }
   }
 }
