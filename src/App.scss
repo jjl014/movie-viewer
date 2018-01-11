@@ -2,12 +2,12 @@
 @import './stylesheets/colors';
 @import './stylesheets/movie_index';
 @import './stylesheets/movie_index_item';
+@import './stylesheets/movie_details';
 @import './stylesheets/searchbar';
 @import './stylesheets/navbar';
 
 body {
   background-color: rgba(0,0,0,0.9);
-  padding-bottom: 30px;
   font-family: Lato, sans-serif;
 }
 

@@ -1,6 +1,6 @@
 import {
   RECEIVE_MOVIES,
-  RECEIVE_GENRES
+  RECEIVE_MOVIE_DETAILS
 } from '../actions/movie_actions';
 
 const _defaultState = {
@@ -24,7 +24,7 @@ const _defaultState = {
     "total_pages": null,
     "list": null
   },
-  "genres": null
+  "movie_details": null
 };
 
 const MoviesReducer = (state = _defaultState, action) => {
@@ -37,8 +37,8 @@ const MoviesReducer = (state = _defaultState, action) => {
           "total_pages": action.total_pages
         }
       });
-    case RECEIVE_GENRES:
-      return Object.assign({}, state, {"genres": action.genres});
+    case RECEIVE_MOVIE_DETAILS:
+      return Object.assign({}, state, {"movie_details": action.details});
     default:
       return state;
   }

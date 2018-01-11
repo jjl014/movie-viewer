@@ -31,9 +31,9 @@ export const getLatestMovie = () => (
 );
 
 export const getMovieDetails = (movieId) => (
-  axios.get(`${url}movie/${movieId}`)
+  axios.get(`${url}movie/${movieId}?api_key=${apiKey}`)
 );
 
 export const getMovieReview = (movieId) => (
-  axios.get(`${url}movie/${movieId}/reviews`)
+  axios.get(`${url}movie/${movieId}/reviews?api_key=${apiKey}`)
 );
