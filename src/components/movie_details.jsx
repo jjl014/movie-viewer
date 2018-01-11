@@ -2,11 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {  } from 'react-router-dom';
 import { fetchMovieDetails } from '../actions/movie_actions';
+import Loader from './loader';
 
 class MovieDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false
+    };
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params;
-    this.props.fetchMovieDetails(id);
+    this.setState({loading: true});
+    this.props.fetchMovieDetails(id)
+      .then(() => {
+        this.setState({loading: false});
+      });
   }
 
   render() {
@@ -49,7 +61,7 @@ class MovieDetails extends React.Component {
                 </h2>
               </div><div className="content-section">
                 <h4>IMDb</h4>
-                <h2><a href={imdb}>{imdb.slice(8)}</a></h2>
+                <h2><a href={imdb} target="_blank">{imdb.slice(8)}</a></h2>
               </div>
             </div>
           </div>
@@ -61,9 +73,12 @@ class MovieDetails extends React.Component {
 
     return(
       <div style={style} className="movie-details-container">
-        <div className="movie-details-overlay">
-          {display}
-        </div>
+        {
+          this.state.loading ? <Loader /> :
+          <div className="movie-details-overlay">
+            {display}
+          </div>
+        }
       </div>
     );
   }

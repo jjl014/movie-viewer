@@ -11,7 +11,7 @@ const MovieIndexItem = ({movie, scrollToTop}) => {
             poster_path ?
             <img
               className="movie-img"
-              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+              src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
               alt={`${title}_poster_placeholder`}/> :
             <img
               className="movie-img"

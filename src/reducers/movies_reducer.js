@@ -1,6 +1,7 @@
 import {
   RECEIVE_MOVIES,
-  RECEIVE_MOVIE_DETAILS
+  RECEIVE_MOVIE_DETAILS,
+  UPDATE_LOADING
 } from '../actions/movie_actions';
 
 const _defaultState = {
@@ -24,7 +25,8 @@ const _defaultState = {
     "total_pages": null,
     "list": null
   },
-  "movie_details": null
+  "movie_details": null,
+  "loading": false
 };
 
 const MoviesReducer = (state = _defaultState, action) => {
@@ -35,10 +37,13 @@ const MoviesReducer = (state = _defaultState, action) => {
         [action.section]: {
           "list": action.movies,
           "total_pages": action.total_pages
-        }
+        },
+        "loading": false
       });
     case RECEIVE_MOVIE_DETAILS:
       return Object.assign({}, state, {"movie_details": action.details});
+    case UPDATE_LOADING:
+      return Object.assign({}, state, {"loading": true});
     default:
       return state;
   }

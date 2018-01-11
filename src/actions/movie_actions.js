@@ -9,6 +9,11 @@ export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 export const RECEIVE_GENRES = "RECEIVE_GENRES";
 export const RECEIVE_MOVIE_DETAILS = "RECEIVE_MOVIE_DETAILS";
 export const RECEIVE_MOVIE_REVIEWS = "RECEIVE_MOVIE_DETAILS";
+export const UPDATE_LOADING = "UPDATE_LOADING";
+
+export const updateLoading = () => ({
+  type: UPDATE_LOADING
+});
 
 export const receiveMovies = (movies, section, total_pages, query) => ({
   type: RECEIVE_MOVIES,

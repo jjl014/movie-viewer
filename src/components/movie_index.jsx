@@ -4,23 +4,31 @@ import { withRouter } from 'react-router-dom';
 import {
   fetchMovies,
   fetchMovieGenres,
-  queryMovies
+  queryMovies,
+  updateLoading
 } from '../actions/movie_actions';
 import { updateFilter } from '../actions/filter_actions';
 import MovieIndexItem from './movie_index_item';
+import Loader from './loader';
 
 class MovieIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       page: 1,
+      loading: false
     };
   }
 
   componentDidMount() {
     const { section } = this.props;
     if(section && section !== "search_results") {
+      // this.setState({loading: true});
+      this.props.updateLoading();
       this.props.fetchMovies(section, this.state.page);
+        // .then(() => {
+        //   this.setState({loading: false});
+        // });
     }
   }
 
@@ -29,9 +37,19 @@ class MovieIndex extends React.Component {
     const { query } = nextProps;
     if(nextState.page !== this.state.page) {
       if(this.props.section === "search_results") {
+        // this.setState({loading: true});
+        this.props.updateLoading();
         this.props.queryMovies(query, nextState.page);
+          // .then(() => {
+          //   this.setState({loading: false});
+          // });
       } else {
+        // this.setState({loading: true});
+        this.props.updateLoading();
         this.props.fetchMovies(section, nextState.page);
+          // .then(() => {
+          //   this.setState({loading: false});
+          // });
       }
     }
   }
@@ -94,13 +112,23 @@ class MovieIndex extends React.Component {
   }
 
   render () {
-    return (
-      <div className="movie-index-container">
-        {this.renderListNav()}
-        <div className="movie-index">
-          {this.generateMovieList()}
+    let display;
+    if(this.props.loading) {
+      display = <Loader />;
+    } else {
+      display = (
+        <div className="movie-index-container">
+          {this.renderListNav()}
+            <div className="movie-index">
+              {this.generateMovieList()}
+            </div>
+          {this.renderListNav()}
         </div>
-        {this.renderListNav()}
+      );
+    }
+    return (
+      <div className="movie-index-super-container">
+        { display }
       </div>
     );
   }
@@ -110,7 +138,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     movies: state.movies[ownProps.section].list,
     totalPages: state.movies[ownProps.section].total_pages,
-    query: state.filters.query
+    query: state.filters.query,
+    loading: state.movies.loading
   };
 };
 
@@ -118,7 +147,8 @@ const mapDispatchToProps = dispatch => ({
   fetchMovies: (section, page) => dispatch(fetchMovies(section, page)),
   fetchMovieGenres: () => dispatch(fetchMovieGenres()),
   updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
-  queryMovies: (query, page) => dispatch(queryMovies(query, page))
+  queryMovies: (query, page) => dispatch(queryMovies(query, page)),
+  updateLoading: () => dispatch(updateLoading())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MovieIndex));

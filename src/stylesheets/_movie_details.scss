@@ -100,17 +100,17 @@
 
 @media (max-width: 1200px) {
   .movie-poster {
-    width: 350px;
+    width: 370px;
   }
 }
 
 @media (max-width: 1000px) {
   .movie-poster {
-    width: 310px;
+    width: 370px;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .movie-details {
     flex-wrap: wrap-reverse;
     justify-content: center;

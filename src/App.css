@@ -159,13 +159,13 @@ body, a, div, p, h1, h2, h3, h4, input, li, ul {
 
 @media (max-width: 1200px) {
   .movie-poster {
-    width: 350px; } }
+    width: 370px; } }
 
 @media (max-width: 1000px) {
   .movie-poster {
-    width: 310px; } }
+    width: 370px; } }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .movie-details {
     flex-wrap: wrap-reverse;
     justify-content: center;
@@ -274,7 +274,7 @@ body, a, div, p, h1, h2, h3, h4, input, li, ul {
         background-color: rgba(255, 255, 255, 0.95);
         width: 100vw; } }
 
-main {
+div.main {
   width: 100vw;
   height: 100vh;
   display: flex;
