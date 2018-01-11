@@ -47,7 +47,10 @@ class MovieIndex extends React.Component {
     if(movies) {
       return movies.map((movie, i) => {
         if(movie.poster_path) {
-          return <MovieIndexItem key={`movie-${section}-${i}`} movie={movie} />;
+          return <MovieIndexItem
+                  key={`movie-${section}-${i}`}
+                  scrollToTop={this.scrollToTop}
+                  movie={movie} />;
         }
         return null;
       });
@@ -68,8 +71,12 @@ class MovieIndex extends React.Component {
           this.setState({page: (this.state.page - 1)});
         }
       }
-      window.scrollTo(0,0);
+      this.scrollToTop();
     };
+  }
+
+  scrollToTop() {
+    window.scrollTo(0,0);
   }
 
   renderListNav() {

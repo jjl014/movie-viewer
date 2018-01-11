@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MovieIndexItem = ({movie}) => {
+const MovieIndexItem = ({movie, scrollToTop}) => {
   const { poster_path, title, id } = movie;
   return (
     <div className="movie-index-item clearfix">
-      <div className="movie-img-wrapper">
+      <div className="movie-img-wrapper" onClick={scrollToTop}>
         <Link to={`/movie/${id}`}>
           {
             poster_path ?

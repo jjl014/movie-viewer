@@ -102,6 +102,7 @@ body, a, div, p, h1, h2, h3, h4, input, li, ul {
   align-items: center; }
 
 .movie-details {
+  margin-top: 7vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -180,10 +181,14 @@ body, a, div, p, h1, h2, h3, h4, input, li, ul {
   display: flex;
   align-items: center;
   height: 6vh;
-  width: 30%; }
+  margin-right: 50px; }
   .search-bar input {
-    padding: 10px 5px;
-    font-size: 16px; }
+    width: 300px;
+    padding: 10px 8px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    border-radius: 5px; }
 
 .navbar {
   display: flex;
@@ -195,11 +200,12 @@ body, a, div, p, h1, h2, h3, h4, input, li, ul {
   width: 100%;
   position: absolute; }
   .navbar .btn-container {
+    margin-left: 40px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    height: 100%; }
+    height: 7vh;
+    flex-direction: row; }
+  .navbar .btn-menu {
+    display: none; }
   .navbar .btn-primary {
     background-color: #cc7b19;
     color: white;
@@ -214,6 +220,22 @@ body, a, div, p, h1, h2, h3, h4, input, li, ul {
   .navbar .btn-primary:hover {
     background-color: #a96615;
     color: white; }
+
+@media (max-width: 850px) {
+  .navbar {
+    height: 7vh;
+    display: flex;
+    justify-content: center; }
+    .navbar .search-bar {
+      margin: 0;
+      padding: 0; }
+    .navbar .btn-container {
+      display: none; }
+    .navbar .btn-menu {
+      display: flex;
+      width: auto;
+      height: auto;
+      margin-right: 10px; } }
 
 body {
   background-color: rgba(0, 0, 0, 0.9);

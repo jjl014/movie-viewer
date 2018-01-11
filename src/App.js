@@ -17,7 +17,6 @@ import UpcomingMovies from './components/upcoming_movies';
 import TopRatedMovies from './components/top_rated_movies';
 import SearchResults from './components/search_results';
 import MovieDetails from './components/movie_details';
-import StarDetails from './components/star_details';
 
 // Store
 const store = createStore(
@@ -29,7 +28,7 @@ const store = createStore(
 const App = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter onUpdate={() => window.scrollTo(0,0)}>
+      <BrowserRouter>
         <div className="main-container">
           <NavBar />
           <Switch>
@@ -39,7 +38,6 @@ const App = () => {
             <Route exact path="/top_rated" component={TopRatedMovies}/>
             <Route path="/search" component={SearchResults}/>
             <Route path="/movie/:id" component={MovieDetails} />
-            <Route path="/star/:id" component={StarDetails} />
           </Switch>
         </div>
       </BrowserRouter>

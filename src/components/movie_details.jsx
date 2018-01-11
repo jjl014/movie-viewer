@@ -9,9 +9,6 @@ class MovieDetails extends React.Component {
     this.props.fetchMovieDetails(id);
   }
 
-  formatTagLine(tagline) {
-  }
-
   render() {
     const {details} = this.props;
     let display = null, style = null, imdb = null;

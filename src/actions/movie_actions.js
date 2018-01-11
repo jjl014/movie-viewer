@@ -2,8 +2,7 @@ import {
   searchMovies,
   getMovies,
   getMovieGenres,
-  getMovieDetails,
-  getStarDetails
+  getMovieDetails
 } from '../util/movie_api_util';
 
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";

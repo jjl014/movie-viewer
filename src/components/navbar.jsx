@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './searchbar';
+import DropDown from './dropdown';
 
 class NavBar extends React.Component {
   render () {
@@ -12,6 +13,7 @@ class NavBar extends React.Component {
           <Link className="btn-primary" to="/upcoming">Upcoming</Link>
           <Link className="btn-primary" to="/now_playing">Now Playing</Link>
         </div>
+        <DropDown />
         <SearchBar />
       </div>
     );

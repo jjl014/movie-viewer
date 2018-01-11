@@ -9,11 +9,14 @@
   position: absolute;
 
   .btn-container {
+    margin-left: 40px;
     display: flex;
+    height: 7vh;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    height: 100%;
+  }
+
+  .btn-menu {
+    display: none;
   }
 
   .btn-primary {
@@ -32,6 +35,30 @@
   .btn-primary:hover {
     background-color: #a96615;
     color: white;
+  }
+}
+
+@media (max-width: 850px) {
+  .navbar {
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+
+    .search-bar {
+      margin: 0;
+      padding: 0;
+    }
+
+    .btn-container {
+      display: none;
+    }
+
+    .btn-menu {
+      display: flex;
+      width: auto;
+      height: auto;
+      margin-right: 10px;
+    }
   }
 }
 //
