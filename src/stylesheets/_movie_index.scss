@@ -1,8 +1,13 @@
+.main-container {
+  height: 100vh;
+}
+
 .movie-index-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 58px;
   padding-bottom: 30px;
 }
 
