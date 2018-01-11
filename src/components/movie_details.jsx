@@ -67,8 +67,6 @@ class MovieDetails extends React.Component {
           </div>
         </div>
       );
-    } else {
-      display = "Loading...";
     }
 
     return(
