@@ -32,6 +32,7 @@ const App = () => {
         <div className="main-container">
           <NavBar />
           <Switch>
+            <Route exact path="/" component={PopularMovies}/>
             <Route exact path="/popular" component={PopularMovies}/>
             <Route exact path="/upcoming" component={UpcomingMovies}/>
             <Route exact path="/now_playing" component={NowPlayingMovies}/>
